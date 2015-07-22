@@ -1,0 +1,24 @@
+{
+  "name": "devarit",
+  "version": "1.0.0",
+  "description": "Website for Devarit Ltd (http://devarit.uk)",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-less": "^3.0.3",
+    "gulp-load-plugins": "^0.10.0",
+    "path": "^0.11.14"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^0.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Didehvar <james@didehvar.com> (http://didehvar.co.uk/)",
+  "license": "ISC"
+}
