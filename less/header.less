@@ -1,6 +1,7 @@
 
 @import 'variables';
 @import 'node_modules/lesshat/build/lesshat-prefixed';
+@import (less) 'animate.css';
 
 html, body {
   width: 100%;
@@ -12,9 +13,9 @@ header {
   width: 100%;
   min-height: 100%;
 
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ny-skyline.jpg');
-  background-position: center;
+  .lh-background-image(linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ny-skyline.jpg'));
   .lh-background-size(cover);
+  background-position: center;
 
   .container {
     position: absolute;
@@ -32,6 +33,9 @@ header {
       font-weight: 700;
       letter-spacing: 15px;
       margin-bottom: 0;
+
+      .animated;
+      .fadeIn;
 
       @media (min-width: @screen-sm-min) {
         font-size: 124px;
