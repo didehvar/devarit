@@ -1,5 +1,6 @@
 
-@import 'mixin';
+@import 'variables';
+@import 'node_modules/lesshat/build/lesshat-prefixed';
 
 html, body {
   width: 100%;
@@ -13,23 +14,41 @@ header {
 
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ny-skyline.jpg');
   background-position: center;
-  .cover();
+  .lh-background-size(cover);
 
   .container {
     position: absolute;
-    top: 45%;
+    top: 30%;
     width: 100%;
+
+    color: #F89406;
+    font-family: 'Oxygen', sans-serif;
+
     text-align: center;
+    text-transform: uppercase;
 
     h1 {
-      color: #F89406;
-
-      font-family: 'Oxygen', sans-serif;
-      font-size: 124px;
-      font-weight: 600;
-
-      text-transform: uppercase;
+      font-size: 64px;
+      font-weight: 700;
       letter-spacing: 15px;
+      margin-bottom: 0;
+
+      @media (min-width: @screen-sm-min) {
+        font-size: 124px;
+      }
+    }
+
+    h4 {
+      color: white;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 10px;
+      margin-top: 0;
+      line-height: 0.3;
+
+      strong {
+        color: #F89406;
+      }
     }
   }
 }
