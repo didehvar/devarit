@@ -24,7 +24,7 @@
         var sheet = document.styleSheets[i];
         if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
           var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules.length == 0) {
+          if (rules && rules.length == 0) {
             var link = document.createElement('link');
             link.rel = 'stylesheet';
             // that mysterious thing down there is regex for "get everything after the last /"
