@@ -165,7 +165,8 @@
             <div class="form-group">
               <label for="inputEmail" class="control-label col-sm-2 col-sm-offset-1">Email</label>
               <div class="col-sm-6">
-                <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" data-error="Please use a valid email address" required>
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                  placeholder="example@example.com" data-error="Please use a valid email address" required>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -173,7 +174,7 @@
             <div class="form-group">
               <label for="inputMessage" class="control-label col-sm-2 col-sm-offset-1">Message</label>
               <div class="col-sm-6">
-                <textarea rows="5" cols="5" class="form-control" id="inputMessage"
+                <textarea rows="5" cols="5" class="form-control" id="inputMessage" name="inputMessage"
                   placeholder="I'd like to know more about you." data-error="Please enter a message"
                   required data-minlength="10" data-minlength-error="Plese enter a few more words"></textarea>
                 <div class="help-block with-errors"></div>

@@ -1,5 +1,7 @@
 <?php
 
+var_dump($_POST);
+
 $email = stripslashes(trim($_POST['inputEmail']));
 $message = stripslashes(trim($_POST['inputMessage']));
 $captcha = $_POST['g-recaptcha-response'];
@@ -7,22 +9,24 @@ $pattern  = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 
 function validateCaptcha() {
     try {
-      $data = [
+      $data = array(
         'secret' => '[secret]',
-        'response' => $captcha,
+        'response' => $_POST['g-recaptcha-response'],
         'remoteip' => $_SERVER['REMOTE_ADDR']
-      ];
+      );
 
-      $options = [
-        'http' => [
+      $options = array(
+        'http' => array(
           'header' => 'Content-type: application/x-www-form-urlencoded\r\n',
           'method' => 'POST',
           'content' => http_build_query($data)
-        ]
-      ];
+        )
+      );
 
       $context = stream_context_create($options);
-      $result = file_get_contents($url, false, $context);
+      $result = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+
+      var_dump($result);
 
       return json_decode($result)->success;
     } catch (Exception $e) {
