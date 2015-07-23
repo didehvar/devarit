@@ -1,7 +1,5 @@
 <?php
 
-var_dump($_POST);
-
 $email = stripslashes(trim($_POST['inputEmail']));
 $message = stripslashes(trim($_POST['inputMessage']));
 $captcha = $_POST['g-recaptcha-response'];
@@ -25,8 +23,6 @@ function validateCaptcha() {
 
       $context = stream_context_create($options);
       $result = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
-
-      var_dump($result);
 
       return json_decode($result)->success;
     } catch (Exception $e) {
