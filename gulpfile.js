@@ -15,7 +15,8 @@ gulp.task('build', function() {
 
   gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js',
             'node_modules/jquery/dist/jquery.min.js',
-            'node_modules/jquery-smooth-scroll/src/jquery.smooth-scroll.js'])
+            'node_modules/jquery-smooth-scroll/src/jquery.smooth-scroll.js',
+            'node_modules/bootstrap-validator/dist/validator.min.js'])
       .pipe(gulp.dest('js/vendor'));
 
   gulp.src('node_modules/font-awesome/fonts/*.*')

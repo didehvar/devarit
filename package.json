@@ -3,16 +3,11 @@
   "version": "1.0.0",
   "description": "Website for Devarit Ltd (http://devarit.uk)",
   "main": "gulpfile.js",
-  "dependencies": {
-    "font-awesome": "^4.3.0",
-    "gulp": "^3.9.0",
-    "gulp-less": "^3.0.3",
-    "gulp-livereload": "^3.8.0",
-    "gulp-load-plugins": "^0.10.0",
-    "path": "^0.11.14"
-  },
+  "dependencies": {},
   "devDependencies": {
     "bootstrap": "^3.3.5",
+    "bootstrap-validator": "^0.9.0",
+    "font-awesome": "^4.3.0",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",

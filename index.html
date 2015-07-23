@@ -9,16 +9,55 @@
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <script>
+    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
+    // told you it was magic ;)
+    var cdns = [
+      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+    ];
+
+    var modified = false;
+    for (var i = 0; i < document.styleSheets.length; ++i) {
+      cdns.forEach(function(cdn) {
+        var sheet = document.styleSheets[i];
+        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
+          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
+          if (rules.length == 0) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            // that mysterious thing down there is regex for "get everything after the last /"
+            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
+
+            document.head.appendChild(link);
+          }
+        }
+      });
+    }
+  </script>
+
   <link rel="stylesheet" href="css/devarit.css">
 
   <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Devarit</h1>
-      <h4>Providing solutions for <strong>you</strong></h4>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Devarit</h1>
+          <h4>Providing solutions for <strong>you</strong></h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-helper">
+      <a href="#home">
+        <i class="fa fa-chevron-down fa-2x"></i>
+      </a>
     </div>
   </header>
 
@@ -33,13 +72,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="#">Devarit</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#home">Home <span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="#home">Home</a></li>
           <li><a href="#clients">Clients</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -113,11 +154,44 @@
     </div>
   </section>
 
+  <a class="navbar-anchor" id="contact"></a>
   <section id="section-contact">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
           <h1>Contact us</h1>
+
+          <form data-toggle="validator" role="form" class="form-horizontal">
+            <div class="form-group">
+              <label for="inputEmail" class="control-label col-sm-2 col-sm-offset-1">Email</label>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" data-error="Please use a valid email address" required>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputMessage" class="control-label col-sm-2 col-sm-offset-1">Message</label>
+              <div class="col-sm-6">
+                <textarea rows="5" cols="5" class="form-control" id="inputMessage"
+                  placeholder="I'd like to know more about you." data-error="Please enter a message"
+                  required data-minlength="10" data-minlength-error="Plese enter a few more words"></textarea>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-6 col-sm-offset-3">
+                <div class="g-recaptcha" data-sitekey="6Le4OgoTAAAAAGLmCOcFdJKmLYPAGOqRWY0vRk7z"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-6">
+                <button type="submit" class="btn btn-warning btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -127,7 +201,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h4><i class="fa fa-copyright"></i> 2015 Devarit Ltd.</h4>
+          <h5><i class="fa fa-copyright"></i> 2015 Devarit Ltd.</h5>
         </div>
       </div>
     </div>
@@ -136,31 +210,10 @@
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
   <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
 
-  <script>
-    // some magic that works out whether cdn's have loaded
-    // if they haven't, it uses local sources instead
-    // see, MAGIC!
-    var cdns = [
-      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
-      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-    ];
-
-    $.each(document.styleSheets, function(i, sheet) {
-      cdns.forEach(function(cdn) {
-        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
-          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules.length == 0) {
-            // that mysterious thing down there is regex for "get everything after the last /"
-            $('<link rel="stylesheet" href="css/' + /[^/]*$/.exec(cdn)[0] + '">').appendTo('head');
-          }
-        }
-      });
-    });
-  </script>
-
   <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
   <script>window.jQuery.fn.modal || document.write('<script src="js/vendor/bootstrap.min.js"><\/script>')</script>
 
+  <script src="js/vendor/validator.min.js"></script>
   <script src="js/vendor/jquery.smooth-scroll.js"></script>
   <script src="js/scroll-navbar.js"></script>
 </body>
