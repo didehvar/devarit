@@ -4,6 +4,7 @@
   "description": "Website for Devarit Ltd (http://devarit.uk)",
   "main": "gulpfile.js",
   "dependencies": {
+    "font-awesome": "^4.3.0",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",
