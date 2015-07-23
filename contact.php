@@ -48,7 +48,7 @@ if (preg_match($pattern, $email)) {
     $result = "reCAPTCHA failed";
   }
 
-  $emailTo = 'justaelf@gmail.com';
+  $emailTo = 'mark@devarit.uk';
 
   $headers = 'Content-type: text/html; charset=utf-8' . PHP_EOL;
   $headers .= 'From: $email' . PHP_EOL;
