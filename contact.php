@@ -2,10 +2,39 @@
 
 $email = stripslashes(trim($_POST['inputEmail']));
 $message = stripslashes(trim($_POST['inputMessage']));
+$captcha = $_POST['g-recaptcha-response'];
 $pattern  = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
+
+function validateCaptcha() {
+    try {
+      $data = [
+        'secret' => '[secret]',
+        'response' => $captcha,
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+      ];
+
+      $options = [
+        'http' => [
+          'header' => 'Content-type: application/x-www-form-urlencoded\r\n',
+          'method' => 'POST',
+          'content' => http_build_query($data)
+        ]
+      ];
+
+      $context = stream_context_create($options);
+      $result = file_get_contents($url, false, $context);
+
+      return json_decode($result)->success;
+    } catch (Exception $e) {
+      return null;
+    }
+}
 
 if (preg_match($pattern, $email)) {
   $result = "Something went wrong, please try again";
+
+} else if (!$captcha) {
+  $result = "reCAPTCHA missing";
 
 } else if (!isset($email) || strlen($email) < 3 ||
            !isset($message) || strlen($message) < 10) {
@@ -15,6 +44,10 @@ if (preg_match($pattern, $email)) {
   $result = "The email you entered doesn't seem to be valid";
 
 } else {
+  if (!validateCaptcha()) {
+    $result = "reCAPTCHA failed";
+  }
+
   $emailTo = 'justaelf@gmail.com';
 
   $headers = 'Content-type: text/html; charset=utf-8' . PHP_EOL;
