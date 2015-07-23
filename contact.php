@@ -51,9 +51,9 @@ if (preg_match($pattern, $email)) {
   $emailTo = 'mark@devarit.uk';
 
   $headers = 'Content-type: text/html; charset=utf-8' . PHP_EOL;
-  $headers .= 'From: $email' . PHP_EOL;
-  $headers .= 'Return-Path: $emailTo' . PHP_EOL;
-  $headers .= 'Reply-To: $email_from' . PHP_EOL;
+  $headers .= 'From: ' . $email . PHP_EOL;
+  $headers .= 'Return-Path: ' . $emailTo . PHP_EOL;
+  $headers .= 'Reply-To: ' . $email_from . PHP_EOL;
   $headers .= 'X-Mailer: PHP/' . phpversion() . PHP_EOL;
 
   $message = '<br>' . $message . '<br>';
