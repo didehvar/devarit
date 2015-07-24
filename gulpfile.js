@@ -4,6 +4,7 @@ var plugins = require('gulp-load-plugins')();
 gulp.task('less', function() {
   return gulp.src('less/devarit.less')
     .pipe(plugins.less())
+    .pipe(plugins.minifyCss())
     .pipe(gulp.dest('css'))
     .pipe(plugins.livereload());
 });
