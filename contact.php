@@ -56,7 +56,7 @@ if (preg_match($pattern, $email)) {
   $headers .= 'Reply-To: ' . $email_from . PHP_EOL;
   $headers .= 'X-Mailer: PHP/' . phpversion() . PHP_EOL;
 
-  $message = '<br>' . $message . '<br>';
+  $message = '<br>' . nl2br($message) . '<br>';
   mail($emailTo, 'Devarit Contact', $message, $headers);
 }
 
