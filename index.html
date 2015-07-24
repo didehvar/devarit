@@ -10,33 +10,6 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-  <script>
-    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
-    // told you it was magic ;)
-    var cdns = [
-      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
-      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-    ];
-
-    var modified = false;
-    for (var i = 0; i < document.styleSheets.length; ++i) {
-      cdns.forEach(function(cdn) {
-        var sheet = document.styleSheets[i];
-        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
-          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules && rules.length == 0) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            // that mysterious thing down there is regex for "get everything after the last /"
-            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
-
-            document.head.appendChild(link);
-          }
-        }
-      });
-    }
-  </script>
-
   <link rel="stylesheet" href="css/devarit.css">
 
   <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400' rel='stylesheet' type='text/css'>
@@ -214,5 +187,32 @@
   <script src="js/vendor/validator.min.js"></script>
   <script src="js/vendor/jquery.smooth-scroll.js"></script>
   <script src="js/scroll-navbar.js"></script>
+
+  <script>
+    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
+    // told you it was magic ;)
+    var cdns = [
+      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+    ];
+
+    var modified = false;
+    for (var i = 0; i < document.styleSheets.length; ++i) {
+      cdns.forEach(function(cdn) {
+        var sheet = document.styleSheets[i];
+        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
+          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
+          if (rules && rules.length == 0) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            // that mysterious thing down there is regex for "get everything after the last /"
+            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
+
+            document.head.appendChild(link);
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
