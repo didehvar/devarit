@@ -8,7 +8,7 @@ $pattern  = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 function validateCaptcha() {
     try {
       $data = array(
-        'secret' => '[secret]',
+        'secret' => 'YOUR_SECRET_KEY',
         'response' => $_POST['g-recaptcha-response'],
         'remoteip' => $_SERVER['REMOTE_ADDR']
       );
@@ -72,34 +72,7 @@ if (preg_match($pattern, $email)) {
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-  <script>
-    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
-    // told you it was magic ;)
-    var cdns = [
-      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
-      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-    ];
-
-    var modified = false;
-    for (var i = 0; i < document.styleSheets.length; ++i) {
-      cdns.forEach(function(cdn) {
-        var sheet = document.styleSheets[i];
-        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
-          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules.length == 0) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            // that mysterious thing down there is regex for "get everything after the last /"
-            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
-
-            document.head.appendChild(link);
-          }
-        }
-      });
-    }
-  </script>
-
-  <link rel="stylesheet" href="css/devarit.css">
+  <link rel="stylesheet" href="css/devarit.min.css">
 
   <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -127,5 +100,32 @@ if (preg_match($pattern, $email)) {
       </a>
     </div>
   </header>
+
+  <script>
+    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
+    // told you it was magic ;)
+    var cdns = [
+      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+    ];
+
+    var modified = false;
+    for (var i = 0; i < document.styleSheets.length; ++i) {
+      cdns.forEach(function(cdn) {
+        var sheet = document.styleSheets[i];
+        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
+          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
+          if (rules.length == 0) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            // that mysterious thing down there is regex for "get everything after the last /"
+            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
+
+            document.head.appendChild(link);
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
