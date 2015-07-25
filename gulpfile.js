@@ -50,7 +50,7 @@ gulp.task('build', function() {
 gulp.task('watch', function() {
   plugins.livereload.listen();
 
-  gulp.watch('less/*.less', ['less']);
+  gulp.watch('less/*.less', ['css']);
   gulp.watch('js/**/*.js', ['js']);
   gulp.watch('public/**/*.*', ['misc']);
 });
