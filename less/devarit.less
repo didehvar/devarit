@@ -47,9 +47,7 @@ header {
   width: 100%;
   min-height: 100%;
 
-  .lh-background-image(linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ny-skyline.jpg'));
-  .lh-background-size(cover);
-  background-position: center;
+  background: linear-gradient(to bottom, @dark-background, lighten(@dark-background, 5%));
 
   .container {
     position: absolute;
