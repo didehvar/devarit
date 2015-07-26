@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-sm-12">
           <h1>Devarit</h1>
-          <h4>Providing solutions for <strong>you</strong></h4>
+          <h4>Providing solutions</h4>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
   <section id="section-clients">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-6 col-sm-offset-3">
           <h1>Our clients</h1>
           <p>
             Here at Devarit, we've worked with some of the leading companies in technology.
@@ -105,17 +105,16 @@
             times, costs and iteration speeds.
           </p>
         </div>
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-sm-6">
-              <a href="http://www.bnpparibas.co.uk/" class="paribas">
-                <img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/BNP_Paribas.svg/800px-BNP_Paribas.svg.png" alt="BNP Paribas logo">
-              </a>
-            </div>
-            <div class="col-sm-6">
-              <img class="img-responsive" src="https://intranet.mmodal.com/wps/themes/html/mmodal-theme/images/mm/mmodal_logo.png">
-            </div>
-          </div>
+      </div>
+      <div class="row equal">
+        <div class="col-sm-offset-2"></div><!-- don't use offset below, it will replace margin -->
+        <div class="col-sm-4">
+          <a href="http://www.bnpparibas.co.uk/" class="paribas">
+            <img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/BNP_Paribas.svg/800px-BNP_Paribas.svg.png" alt="BNP Paribas logo">
+          </a>
+        </div>
+        <div class="col-sm-4">
+          <img class="img-responsive" src="https://intranet.mmodal.com/wps/themes/html/mmodal-theme/images/mm/mmodal_logo.png">
         </div>
       </div>
     </div>
@@ -133,7 +132,7 @@
               <label for="inputEmail" class="control-label col-sm-2 col-sm-offset-1">Email</label>
               <div class="col-sm-6">
                 <input type="email" class="form-control" id="inputEmail" name="inputEmail"
-                  placeholder="example@example.com" data-error="Please use a valid email address" required>
+                placeholder="example@example.com" data-error="Please use a valid email address" required>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -142,8 +141,8 @@
               <label for="inputMessage" class="control-label col-sm-2 col-sm-offset-1">Message</label>
               <div class="col-sm-6">
                 <textarea rows="5" cols="5" class="form-control" id="inputMessage" name="inputMessage"
-                  placeholder="I'd like to know more about you." data-error="Please enter a message"
-                  required data-minlength="10" data-minlength-error="Plese enter a few more words"></textarea>
+                placeholder="I'd like to know more about you." data-error="Please enter a message"
+                required data-minlength="10" data-minlength-error="Plese enter a few more words"></textarea>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -189,30 +188,30 @@
   <script src="js/scroll-navbar.min.js"></script>
 
   <script>
-    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
-    // told you it was magic ;)
-    var cdns = [
-      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
-      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-    ];
+  // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
+  // told you it was magic ;)
+  var cdns = [
+    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+    '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+  ];
 
-    var modified = false;
-    for (var i = 0; i < document.styleSheets.length; ++i) {
-      cdns.forEach(function(cdn) {
-        var sheet = document.styleSheets[i];
-        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
-          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules && rules.length == 0) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            // that mysterious thing down there is regex for "get everything after the last /"
-            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
+  var modified = false;
+  for (var i = 0; i < document.styleSheets.length; ++i) {
+    cdns.forEach(function(cdn) {
+      var sheet = document.styleSheets[i];
+      if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
+        var rules = sheet.rules ? sheet.rules : sheet.cssRules;
+        if (rules && rules.length == 0) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          // that mysterious thing down there is regex for "get everything after the last /"
+          link.href = "css/" + /[^/]*$/.exec(cdn)[0];
 
-            document.head.appendChild(link);
-          }
+          document.head.appendChild(link);
         }
-      });
-    }
+      }
+    });
+  }
   </script>
 </body>
 </html>
