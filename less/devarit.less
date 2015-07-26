@@ -194,34 +194,31 @@ nav {
   }
 
   img {
+    padding: 10px;
     margin: 0 auto;
-    text-align: center;
-    margin-top: 40px;
   }
 
-  .paribas {
+  .mmodal {
     img {
-      margin-top: 27px;
+      margin-top: 20px;
     }
   }
 
   .equal {
-    margin-top: 25px;
-  }
-
-  .col-sm-4 {
+    margin: 25px 5px 5px 5px;
     background-image: url('../img/debut_light.png');
     border: 1px solid darken(@brand-colour, 20%);
     .lh-border-radius(5px);
-    margin: 5px;
+
+    .img-responsive {
+      max-width: 80%;
+    }
   }
 
   @media (min-width: @screen-sm-min) {
-    .equal, .equal > div[class='col-sm-4'] {
-      display: -webkit-box;
-      display: -webkit-flex;
+    .equal {
       display: flex;
-      flex: 0 0 auto;
+      align-items: center;
     }
   }
 }
@@ -250,9 +247,10 @@ footer {
   }
 
   a {
-    color: #1D4567;
+    color: darken(@brand-colour, 25%);
 
-    &:hover, &:visited, &:active, &:link {
+    &:hover, &:visited, &:active {
+      color: @brand-colour;
       text-decoration: none;
     }
 
