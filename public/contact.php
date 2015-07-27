@@ -102,30 +102,36 @@ if (preg_match($pattern, $email)) {
   </header>
 
   <script>
-    // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
-    // told you it was magic ;)
-    var cdns = [
-      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
-      '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-    ];
+  // some magic that works out whether cdn's have loaded, if they haven't, it uses local sources instead
+  // told you it was magic ;)
+  var cdns = [
+    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+    '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+  ];
 
-    var modified = false;
-    for (var i = 0; i < document.styleSheets.length; ++i) {
-      cdns.forEach(function(cdn) {
-        var sheet = document.styleSheets[i];
-        if (sheet.href.substring(sheet.href.length - cdn.length) == cdn) {
-          var rules = sheet.rules ? sheet.rules : sheet.cssRules;
-          if (rules.length == 0) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            // that mysterious thing down there is regex for "get everything after the last /"
-            link.href = "css/" + /[^/]*$/.exec(cdn)[0];
+  var modified = false;
+  for (var i = 0; i < document.styleSheets.length; ++i) {
+    cdns.forEach(function(cdn) {
+      var sheet = document.styleSheets[i];
+      var cdnFile = /[^/]*$/.exec(cdn)[0];
 
-            document.head.appendChild(link);
-          }
+      if (sheet.href.substring(sheet.href.length - cdnFile.length) == cdnFile) {
+        var rules = sheet.rules || sheet.cssRules;
+
+        if (rules && rules.length == 0) {
+          var link = document.createElement('link');
+
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+
+          // that mysterious thing down there is regex for "get everything after the last /"
+          link.href = 'css/' + cdnFile;
+
+          document.head.appendChild(link);
         }
-      });
-    }
+      }
+    });
+  }
   </script>
 </body>
 </html>
